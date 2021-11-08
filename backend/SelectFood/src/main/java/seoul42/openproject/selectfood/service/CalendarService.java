@@ -32,7 +32,7 @@ public class CalendarService {
         LocalDate endDate = startDate.plusMonths(1).minusDays(1);
         List<CalendarDayFoodDto> foodNames = new ArrayList<>();
         Long memberId = memberRepository.findByEmail(email).orElseThrow(CUserNotFoundException::new).getId();
-        List<SelectedFood> selectedFoodsInMonth = selectedFoodRepository.findAllByMemberIdAndSelectDateBetween(memberId, startDate, endDate);
+        List<SelectedFood> selectedFoodsInMonth = selectedFoodRepository.findAllByMemberIdAndSelectDateBetweenOrderBySelectDate(memberId, startDate, endDate);
         for (SelectedFood selectedFood:
              selectedFoodsInMonth) {
             foodNames.add(new CalendarDayFoodDto(selectedFood.getFood().getName(), selectedFood.getSelectDate().toString()));

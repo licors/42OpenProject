@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>이름</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="food : ${foods}">
+            <td th:text="${food.id}"></td>
+            <td th:text="${food.name}"></td>
+            <td th:text="${food.tag}"></td>
+            <td th:text="${food.ingredient}"></td>
+            <td th:text="${food.youtubeUrl}"></td>
+            <td><a th:href="@{/food/delete(id=${food.id})}">x</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

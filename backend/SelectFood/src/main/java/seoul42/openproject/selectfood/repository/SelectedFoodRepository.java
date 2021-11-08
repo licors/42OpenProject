@@ -9,5 +9,5 @@ import java.util.List;
 public interface SelectedFoodRepository extends JpaRepository<SelectedFood, Long> {
 
     void deleteByMemberIdAndFoodIdAndSelectDate(Long memberId, Long foodId, LocalDate selectDate);
-    List<SelectedFood> findAllByMemberIdAndSelectDateBetween(Long memberId, LocalDate startDate, LocalDate endDate);
+    List<SelectedFood> findAllByMemberIdAndSelectDateBetweenOrderBySelectDate(Long memberId, LocalDate startDate, LocalDate endDate);
 }

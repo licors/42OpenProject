@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/food/new" method="post">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name">
+                <label for="tag">태그</label>
+                <input type="text" id="tag" name="tag">
+                <label for="ingredient">재료</label>
+                <input type="text" id="ingredient" name="ingredient">
+                <label for="youtubeUrl">유튜브</label>
+                <input type="text" id="youtubeUrl" name="youtubeUrl">
+            </div>
+            <button type="submit">등록</button>
+        </form>
+    </div>
+</body>
+</html>
