@@ -21,7 +21,8 @@
             <td th:text="${food.tag}"></td>
             <td th:text="${food.ingredient}"></td>
             <td th:text="${food.youtubeUrl}"></td>
-            <td><a th:href="@{/food/delete(id=${food.id})}">x</a></td>
+            <td><a th:href="@{/food/edit(name=${food.name})}">수정</a></td>
+            <td><a th:href="@{/food/delete(id=${food.id})}">삭제</a></td>
           </tr>
         </tbody>
       </table>

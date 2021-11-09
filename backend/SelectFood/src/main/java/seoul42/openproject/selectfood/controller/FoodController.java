@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import seoul42.openproject.selectfood.advice.exception.CFoodNotFoundException;
 import seoul42.openproject.selectfood.domain.Food;
 import seoul42.openproject.selectfood.service.FoodService;
 
@@ -26,12 +27,12 @@ public class FoodController {
     }
 
     @GetMapping(value = "/new")
-    public String createForm() {
+    public String createFoodForm() {
         return "foods/createFoodForm";
     }
 
     @PostMapping(value = "/new")
-    public String create(FoodForm form) {
+    public String createFood(FoodForm form) {
 
         Food food = new Food();
         food.setName(form.getName());
@@ -42,6 +43,21 @@ public class FoodController {
         foodService.save(food);
 
         return "redirect:/food/";
+    }
+
+    @GetMapping(value = "/edit")
+    public String editForm(Model model, @RequestParam(value = "name") String name) {
+        Food food = foodService.findByName(name).orElseThrow(CFoodNotFoundException::new);
+        model.addAttribute("food", food);
+
+        return "foods/editFoodForm";
+    }
+
+    @PostMapping(value = "/edit")
+    public String editFood(FoodForm form) {
+        foodService.editFood(form);
+
+        return "redirect:/food/all";
     }
 
     @GetMapping(value = "/all")

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/food/edit" method="post">
+            <div class="form-group">
+<!--                <label for="name" th:value="${food.id}"></label>-->
+<!--                <input type="text" id="id" name="id" th:placeholder="${food.id}" th:default="${food.id}">-->
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" th:placeholder="${food.name}" th:value="${food.name}">
+                <label for="tag">태그</label>
+                <input type="text" id="tag" name="tag" th:placeholder="${food.tag}" th:value="${food.tag}">
+                <label for="ingredient">재료</label>
+                <input type="text" id="ingredient" name="ingredient" th:placeholder="${food.ingredient}" th:value="${food.ingredient}">
+                <label for="youtubeUrl">유튜브</label>
+                <input type="text" id="youtubeUrl" name="youtubeUrl" th:placeholder="${food.youtubeUrl}" th:value="${food.youtubeUrl}">
+            </div>
+            <button type="submit">등록</button>
+        </form>
+        <br>
+    </div>
+</body>
+</html>

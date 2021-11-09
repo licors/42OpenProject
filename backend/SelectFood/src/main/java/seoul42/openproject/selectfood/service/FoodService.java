@@ -3,6 +3,7 @@ package seoul42.openproject.selectfood.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import seoul42.openproject.selectfood.advice.exception.CFoodNotFoundException;
+import seoul42.openproject.selectfood.controller.FoodForm;
 import seoul42.openproject.selectfood.domain.Food;
 import seoul42.openproject.selectfood.repository.FoodRepository;
 
@@ -25,7 +26,7 @@ public class FoodService {
     @Transactional
     public Long save(Food food) {
         // optional 에서 orElseGet() 이 많이 쓰임(있으면 리턴 없으면 뒤에 메소드 실행)
-        validateDuplicateFood(food);
+//        validateDuplicateFood(food);
         foodRepository.save(food);
         return food.getId();
     }
@@ -56,6 +57,17 @@ public class FoodService {
             foods.add(foodRepository.findByName(foodName).orElseGet(Food::new));
         }
         return foods;
+    }
+
+    @Transactional
+    public void editFood(FoodForm form) {
+        Food food = foodRepository.findByName(form.getName()).orElseThrow(CFoodNotFoundException::new);
+        food.setName(form.getName());
+        food.setTag(form.getTag());
+        food.setIngredient(form.getIngredient());
+        food.setYoutubeUrl(form.getYoutubeUrl());
+
+        foodRepository.save(food);
     }
 
     @Transactional
