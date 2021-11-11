@@ -50,9 +50,9 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(CPasswordAuthFailedException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected CommonResult passwordAuthFailed(HttpServletRequest request, CEmailSigninFailedException e) {
+    protected CommonResult passwordAuthFailed(HttpServletRequest request, CPasswordAuthFailedException e) {
         return commonResponseService.getFailResult(-15,
-                "현재 비밀번호가 일치하지 않습니다.");
+                "기존 비밀번호가 일치하지 않습니다.");
     }
 
 
